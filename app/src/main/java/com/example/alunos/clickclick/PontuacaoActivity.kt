@@ -11,11 +11,10 @@ import android.widget.TextView
 class PontuacaoActivity : AppCompatActivity() {
 
     internal lateinit var jogarNovamente: Button
+    internal lateinit var verRanking: Button
     internal lateinit var gameScoreTextView2: TextView
     var score = MainActivity.score1.toString()
-    /*var top1 = 0
-    var top2 = 0
-    var top3 = 0*/
+
     companion object {
         var top1 = 0
         var top2 = 0
@@ -30,6 +29,7 @@ class PontuacaoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pontuacao)
 
         jogarNovamente = findViewById<Button>(R.id.jogar_novamente)
+        verRanking = findViewById<Button>(R.id.ver_ranking)
         gameScoreTextView2 = findViewById<TextView>(R.id.game_score_text_view2)
         gameScoreTextView2.text = getString(R.string.sua_pontuacao, score)
 
@@ -47,6 +47,11 @@ class PontuacaoActivity : AppCompatActivity() {
     fun jogarNovamente(view: View){
        // MainActivity.resetGame()
         val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+    fun verRanking(view: View){
+        // MainActivity.resetGame()
+        val intent = Intent(this, RecordActivity::class.java)
         startActivity(intent)
     }
 }

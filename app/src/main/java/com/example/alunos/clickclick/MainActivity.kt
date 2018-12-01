@@ -1,6 +1,7 @@
 package com.example.alunos.clickclick
 
 import android.content.Intent
+import android.icu.text.AlphabeticIndex
 import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.alunos.clickclick.R.*
+import com.example.alunos.clickclick.R.id.record
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -38,16 +41,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(layout.activity_main)
         Log.d(TAG, "onCreate called. Score is: $score")
 
-        tapMeButton = findViewById<Button>(R.id.tap_me_button)
-        gameScoreTextView = findViewById<TextView>(R.id.game_score_text_view)
-        timeLeftTextView = findViewById<TextView>(R.id.time_left_text_view)
+        tapMeButton = findViewById<Button>(id.tap_me_button)
+        gameScoreTextView = findViewById<TextView>(id.game_score_text_view)
+        timeLeftTextView = findViewById<TextView>(id.time_left_text_view)
         //gameScoreTextView.text=getString(R.string.sua_pontuacao,score.toString())
         //resetGame()
 
-       var mp:MediaPlayer =MediaPlayer.create(this, R.raw.sound_click)
+       var mp:MediaPlayer =MediaPlayer.create(this, raw.sound_click)
 
         if (savedInstanceState != null){
             score = savedInstanceState.getInt(SCORE_KEY)
@@ -57,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             resetGame()
         }
         tapMeButton.setOnClickListener{ view ->
-            val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce)
+            val bounceAnimation = AnimationUtils.loadAnimation(this, anim.bounce)
             view.startAnimation(bounceAnimation)
             mp.start()
             incrementScore()
@@ -65,15 +68,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun restoreGame(){
-        gameScoreTextView.text = getString(R.string.sua_pontuacao, score.toString())
+        gameScoreTextView.text = getString(string.sua_pontuacao, score.toString())
         val restoredTime = timeLeftOnTimer/1000
-        timeLeftTextView.text=getString(R.string.time_left, restoredTime.toString())
+        timeLeftTextView.text=getString(string.time_left, restoredTime.toString())
 
         countDownTimer= object : CountDownTimer(timeLeftOnTimer, countDownInterval) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftOnTimer=millisUntilFinished
                 var timeLeft = millisUntilFinished/1000
-                timeLeftTextView.text=getString(R.string.time_left, timeLeft.toString())
+                timeLeftTextView.text=getString(string.time_left, timeLeft.toString())
             }
 
             override fun onFinish() {
@@ -99,8 +102,27 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(TAG, "onDestroy called.")
     }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var id = item.getItemId()
+        if (id == R.id.record) {
+            val intent = Intent(this, RecordActivity::class.java)
+            startActivity(intent)
+            return true
+        }
+        if (id == R.id.about) {
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.menu, menu)
         return true
@@ -120,19 +142,19 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle((dialogTitle))
         builder.setMessage(dialogMessage)
         builder.create().show()
-    }
+    }*/
 
       fun resetGame(){
         score = 0
-        gameScoreTextView.text = getString(R.string.sua_pontuacao, score.toString())
+        gameScoreTextView.text = getString(string.sua_pontuacao, score.toString())
         val initialTimeLeft = initialCountDown / 1000
-        timeLeftTextView.text = getString(R.string.time_left, initialTimeLeft.toString())
+        timeLeftTextView.text = getString(string.time_left, initialTimeLeft.toString())
 
         countDownTimer = object: CountDownTimer(initialCountDown, countDownInterval){
             override fun onTick(millisUntilFinished: Long){
                 timeLeftOnTimer=millisUntilFinished
                 val timeLeft = millisUntilFinished / 1000
-                timeLeftTextView.text = getString(R.string.time_left, timeLeft.toString())
+                timeLeftTextView.text = getString(string.time_left, timeLeft.toString())
             }
 
             override fun onFinish(){
@@ -161,9 +183,9 @@ class MainActivity : AppCompatActivity() {
             startGame()
         }
         score = score+1
-        val newScore = getString(R.string.sua_pontuacao, score.toString())
+        val newScore = getString(string.sua_pontuacao, score.toString())
         gameScoreTextView.text = newScore
-        val blinkAnimation = AnimationUtils.loadAnimation(this, R.anim.blink)
+        val blinkAnimation = AnimationUtils.loadAnimation(this, anim.blink)
         gameScoreTextView.startAnimation(blinkAnimation)
     }
 

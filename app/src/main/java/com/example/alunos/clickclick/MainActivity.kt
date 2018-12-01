@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(baseContext, PontuacaoActivity::class.java)
         score1=score
         startActivity(intent)
-        Toast.makeText(this, getString(R.string.game_over_message,score.toString()), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, getString(R.string.game_over_message,score.toString()), Toast.LENGTH_SHORT).show()
         resetGame()
     }
 

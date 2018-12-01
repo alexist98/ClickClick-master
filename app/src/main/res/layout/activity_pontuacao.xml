@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#94f78e"
     tools:context=".PontuacaoActivity">
 
     <TextView
@@ -31,7 +32,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/sua_pontuacao"
-        android:textSize="30sp"
+        android:textSize="36sp"
+        app:fontFamily="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,5 +55,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/game_score_text_view2"
-        app:layout_constraintVertical_bias="0.847" />
+        app:layout_constraintVertical_bias="0.847"
+        tools:background="#41df25" />
 </android.support.constraint.ConstraintLayout>

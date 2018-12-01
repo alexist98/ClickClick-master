@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private val SCORE_KEY = "SCORE_KEY"
         private val TIME_LEFT_KEY = "TIME_LEFT_KEY"
+        var score1: Any? = null
     }
 
 
@@ -148,6 +149,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun endGame(){
         val intent = Intent(baseContext, PontuacaoActivity::class.java)
+        score1=score
         startActivity(intent)
         Toast.makeText(this, getString(R.string.game_over_message,score.toString()), Toast.LENGTH_SHORT).show()
         resetGame()

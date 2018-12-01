@@ -48,7 +48,7 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Aplicativo desenvolvido para a matéria de LINGUAGEM DE PROGRAMAÇÃO III do Curso de Ciência da Computação turma:2017 da Universidade Regional Integrada-URI - Campus Erechim\nDesenvolvido no Segundo Semestre de 2018"
+        android:text="Aplicativo desenvolvido para a matéria de LINGUAGEM DE PROGRAMAÇÃO III do Curso de Ciência da Computação Turma:2017 da Universidade Regional Integrada-URI - Campus Erechim\nDesenvolvido no Segundo Semestre de 2018"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.158"

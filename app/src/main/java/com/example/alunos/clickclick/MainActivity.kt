@@ -1,5 +1,7 @@
 package com.example.alunos.clickclick
 
+import android.content.Intent
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     internal lateinit var tapMeButton: Button
     internal lateinit var gameScoreTextView: TextView
     internal lateinit var timeLeftTextView: TextView
-    internal var score = 0
+    var score = 0
     internal var gameStarted = false
     internal lateinit var countDownTimer: CountDownTimer
     internal val initialCountDown: Long = 10000
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity() {
         //gameScoreTextView.text=getString(R.string.sua_pontuacao,score.toString())
         //resetGame()
 
+       var mp:MediaPlayer =MediaPlayer.create(this, R.raw.sound_click)
+
         if (savedInstanceState != null){
             score = savedInstanceState.getInt(SCORE_KEY)
             timeLeftOnTimer = savedInstanceState.getLong(TIME_LEFT_KEY)
@@ -54,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         tapMeButton.setOnClickListener{ view ->
             val bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce)
             view.startAnimation(bounceAnimation)
+            mp.start()
             incrementScore()
         }
     }
@@ -116,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         builder.create().show()
     }
 
-    private fun resetGame(){
+      fun resetGame(){
         score = 0
         gameScoreTextView.text = getString(R.string.sua_pontuacao, score.toString())
         val initialTimeLeft = initialCountDown / 1000
@@ -142,6 +147,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun endGame(){
+        val intent = Intent(baseContext, PontuacaoActivity::class.java)
+        startActivity(intent)
         Toast.makeText(this, getString(R.string.game_over_message,score.toString()), Toast.LENGTH_SHORT).show()
         resetGame()
     }

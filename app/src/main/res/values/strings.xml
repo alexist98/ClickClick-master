@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ClickClick</string>
+    <string name="sua_pontuacao">Sua Pontuação: %s</string>
+    <string name="time_left">Tempo: %s</string>
+    <string name="tap_me">Click!</string>
+    <string name="game_over_message"> Acabou o tempo! Sua pontuação foi: %s</string>
+    <string name="about_menu">About</string>
+    <string name="about_title">ClickClick %s</string>
+    <string name="about_message">Criado por:\nAléxis Toigo\nGabriel Brock\n\n\nDisciplina: Linguagem de Programação III</string>
+</resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#94f78e"
+    android:background="@color/colorAccent"
     tools:context=".MainActivity">
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#41df25"
+        android:background="#FFF06A6A"
         android:onClick="tapMeButton"
         android:text="@string/tap_me"
         app:layout_constraintBottom_toBottomOf="parent"

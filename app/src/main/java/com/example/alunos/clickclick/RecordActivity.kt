@@ -4,12 +4,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 
+
 class RecordActivity : AppCompatActivity() {
 
     internal lateinit var top1TextView: TextView
     internal lateinit var top2TextView: TextView
     internal lateinit var top3TextView: TextView
-
 
     var top1 = PontuacaoActivity.top1.toString()
     var top2 = PontuacaoActivity.top2.toString()
@@ -18,7 +18,6 @@ class RecordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
-
 
         top1TextView = findViewById<TextView>(R.id.top1_text_view)
         top1TextView.text = getString(R.string.sua_pontuacao, top1.toString())
@@ -29,8 +28,4 @@ class RecordActivity : AppCompatActivity() {
         top3TextView = findViewById<TextView>(R.id.top3_text_view)
         top3TextView.text = getString(R.string.sua_pontuacao, top3.toString())
     }
-
-
-
-
 }

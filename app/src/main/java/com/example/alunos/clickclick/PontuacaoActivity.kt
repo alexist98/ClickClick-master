@@ -20,8 +20,6 @@ class PontuacaoActivity : AppCompatActivity() {
         var top2 = 0
         var top3 = 0
     }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val numbers: MutableList<Int> = mutableListOf(top1, top2, top3)
@@ -39,13 +37,7 @@ class PontuacaoActivity : AppCompatActivity() {
         top2=ordenado.component2()
         top3=ordenado.component3()
     }
-
-
-
-
-
     fun jogarNovamente(view: View){
-       // MainActivity.resetGame()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }

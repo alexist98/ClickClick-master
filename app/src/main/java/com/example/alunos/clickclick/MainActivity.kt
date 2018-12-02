@@ -30,15 +30,13 @@ class MainActivity : AppCompatActivity() {
     internal val initialCountDown: Long = 10000
     internal val countDownInterval: Long = 1000
     internal  val  TAG = MainActivity::class.java.simpleName
-      var timeLeftOnTimer: Long = 10000
+    var timeLeftOnTimer: Long = 10000
 
     companion object {
         private val SCORE_KEY = "SCORE_KEY"
         private val TIME_LEFT_KEY = "TIME_LEFT_KEY"
         var score1: Any? = null
     }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
@@ -47,8 +45,6 @@ class MainActivity : AppCompatActivity() {
         tapMeButton = findViewById<Button>(id.tap_me_button)
         gameScoreTextView = findViewById<TextView>(id.game_score_text_view)
         timeLeftTextView = findViewById<TextView>(id.time_left_text_view)
-        //gameScoreTextView.text=getString(R.string.sua_pontuacao,score.toString())
-        //resetGame()
 
        var mp:MediaPlayer =MediaPlayer.create(this, raw.sound_click)
 
@@ -66,7 +62,6 @@ class MainActivity : AppCompatActivity() {
             incrementScore()
         }
     }
-
     private fun restoreGame(){
         gameScoreTextView.text = getString(string.sua_pontuacao, score.toString())
         val restoredTime = timeLeftOnTimer/1000
@@ -78,16 +73,13 @@ class MainActivity : AppCompatActivity() {
                 var timeLeft = millisUntilFinished/1000
                 timeLeftTextView.text=getString(string.time_left, timeLeft.toString())
             }
-
             override fun onFinish() {
                 endGame()
             }
         }
         countDownTimer.start()
         gameStarted=true
-
     }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
@@ -96,17 +88,14 @@ class MainActivity : AppCompatActivity() {
         countDownTimer.cancel()
         Log.d(TAG, "onSaveInstanceState: Saving Score: $score & Time Left: $timeLeftOnTimer")
     }
-
     override fun onDestroy() {
         super.onDestroy()
-
         Log.d(TAG, "onDestroy called.")
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.getItemId()
         if (id == R.id.record) {
@@ -121,29 +110,6 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_about){
-            showInfo()
-        }
-        return true
-    }
-
-    private  fun showInfo(){
-        val dialogTitle = getString(R.string.about_title, BuildConfig.VERSION_NAME)
-        val dialogMessage = getString(R.string.about_message)
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle((dialogTitle))
-        builder.setMessage(dialogMessage)
-        builder.create().show()
-    }*/
-
       fun resetGame(){
         score = 0
         gameScoreTextView.text = getString(string.sua_pontuacao, score.toString())
@@ -156,19 +122,16 @@ class MainActivity : AppCompatActivity() {
                 val timeLeft = millisUntilFinished / 1000
                 timeLeftTextView.text = getString(string.time_left, timeLeft.toString())
             }
-
             override fun onFinish(){
                 endGame()
             }
         }
         gameStarted = false
     }
-
     private fun startGame(){
         countDownTimer.start()
         gameStarted = true
     }
-
     private fun endGame(){
         val intent = Intent(baseContext, PontuacaoActivity::class.java)
         score1=score
@@ -176,8 +139,6 @@ class MainActivity : AppCompatActivity() {
         //Toast.makeText(this, getString(R.string.game_over_message,score.toString()), Toast.LENGTH_SHORT).show()
         resetGame()
     }
-
-
     private fun incrementScore(){
         if(!gameStarted){
             startGame()
@@ -188,5 +149,4 @@ class MainActivity : AppCompatActivity() {
         val blinkAnimation = AnimationUtils.loadAnimation(this, anim.blink)
         gameScoreTextView.startAnimation(blinkAnimation)
     }
-
 }
